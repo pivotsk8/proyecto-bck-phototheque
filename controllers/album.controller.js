@@ -5,10 +5,14 @@ const createAlbumForm = (req, res) => {
 };
 
 const createAlbum = async (req, res) => {
-  await Album.create({
-    title: req.body.albumTitle,
-  });
-  res.redirect("/");
+  try {
+    await Album.create({
+      title: req.body.albumTitle,
+    });
+    res.redirect("/");
+  } catch (error) {
+    res.redirect("/album/create");
+  }
 };
 
 module.exports = {
