@@ -24,7 +24,11 @@
                 autofocus
               />
             </div>
-            <div class="alert alert-danger mt-4 mb-2" role="alert">ERREUR</div>
+            <% if (errors.length) {%>
+            <div class="alert alert-danger mt-4 mb-2" role="alert">
+              <%= errors[0] %>
+            </div>
+            <% } %>
             <button type="submit" class="btn btn-primary mt-4">Creer</button>
           </form>
         </div>

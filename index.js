@@ -1,4 +1,6 @@
 const express = require("express");
+const session = require("express-session");
+const flash = require("connect-flash");
 const path = require("path");
 const mongoose = require("mongoose");
 const albumRoute = require("./routes/album.routes");
@@ -14,9 +16,19 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static("public"));
 
-// app.get("/", (req, res) => {
-//   res.render("album", { title: "Album" });
-// });
+app.set("trust proxy", 1);
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(flash());
+
+app.get("/", (req, res) => {
+  res.redirect("/albums");
+});
 
 app.use("/", albumRoute);
 
