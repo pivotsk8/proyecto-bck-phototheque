@@ -35,6 +35,10 @@ app.get("/", (req, res) => {
 
 app.use("/", albumRoute);
 
+app.use((err, req, res, next) => {
+  res.status(500).send("Erreur interne du serveur");
+});
+
 app.use((req, res) => {
   res.status(404);
   res.send("Page non trouvee");

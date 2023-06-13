@@ -58,12 +58,12 @@ const addImage = catchAsync(async (req, res) => {
   res.redirect(`/albums/${idAlbum}`);
 });
 
-const createAlbumForm = (req, res) => {
+const createAlbumForm = catchAsync((req, res) => {
   res.render("new_album", {
     title: "Nouvel album",
     errors: req.flash("error"),
   });
-};
+});
 
 const createAlbum = catchAsync(async (req, res) => {
   try {
